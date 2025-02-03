@@ -16,19 +16,24 @@ namespace Api.Middleware
 
 
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class BrowserAllowedMiddleware
+    public class BrowserAllowedMiddleware(RequestDelegate next, IEnumerable<BrowserType> browserWhiteList)
     {
-        private readonly RequestDelegate _next;
-
-        public BrowserAllowedMiddleware(RequestDelegate next)
+        public async Task Invoke(HttpContext httpContext)
         {
-            _next = next;
-        }
+            var clientBrowserType = IdentitfyBrowserType(httpContext); //aktueller Browser
 
-        public Task Invoke(HttpContext httpContext)
-        {
-            var clientBrowserType = IdentitfyBrowserType(httpContext);
-            return _next(httpContext);
+            if (browserWhiteList.Any(browser => browser == clientBrowserType))
+            {
+                await next(httpContext); //Browser in WhiteList gefunden
+            }
+            else
+            {
+                httpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
+                httpContext.Response.ContentType = "text/html";
+                await httpContext.Response.WriteAsync(
+                    $"Der Browser ist nicht erlaubt. <a href=\"https://browsehappy.com\">BrowseHappy</a>");
+            }
+
         }
 
         private BrowserType IdentitfyBrowserType(HttpContext httpContext)
@@ -69,9 +74,9 @@ namespace Api.Middleware
     // Extension method used to add the middleware to the HTTP request pipeline.
     public static class BrowserAllowedMiddlewareExtensions
     {
-        public static IApplicationBuilder UseBrowserAllowedMiddleware(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseBrowserAllowedMiddleware(this IApplicationBuilder builder, params IEnumerable<BrowserType> browserWhiteList)
         {
-            return builder.UseMiddleware<BrowserAllowedMiddleware>();
+            return builder.UseMiddleware<BrowserAllowedMiddleware>(browserWhiteList);
         }
     }
 }
