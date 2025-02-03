@@ -1,10 +1,13 @@
+using Api.Configuration;
 using Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
+builder.Services
+    .ConfigureApi()
+    .ConfigureDb(builder.Configuration);
 
 var app = builder.Build();
 
