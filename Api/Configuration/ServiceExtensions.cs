@@ -38,6 +38,7 @@ public static class ServiceExtensions
         services.AddScoped<IRepositoryManager, RepositoryManager>();
 
         services.AddScoped<IQotdService, QotdService>();
+        services.AddScoped<IAuthorService, AuthorService>();
         services.AddScoped<IServiceManager, ServiceManager>();
 
         return services;
