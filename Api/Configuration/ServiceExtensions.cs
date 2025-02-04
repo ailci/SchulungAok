@@ -2,6 +2,7 @@
 using Persistence;
 using Persistence.Contracts;
 using Persistence.Repositories;
+using Service;
 
 namespace Api.Configuration;
 
@@ -34,6 +35,9 @@ public static class ServiceExtensions
     {
         services.AddScoped<IQuoteRepository, QuoteRepository>();
         services.AddScoped<IRepositoryManager, RepositoryManager>();
+
+        services.AddScoped<IQotdService, QotdService>();
+        services.AddScoped<IServiceManager, ServiceManager>();
 
         return services;
     }
