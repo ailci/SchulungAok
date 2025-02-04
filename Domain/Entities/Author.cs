@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +10,11 @@ namespace Domain.Entities
 {
     public class Author
     {
+        //[Key]
+        //[Column("AuthorId")]
         public Guid Id { get; set; }
+
+        [MaxLength(100)]
         public required string Name { get; set; }
         public required string Description { get; set; }
         public DateOnly? BirthDate { get; set; }

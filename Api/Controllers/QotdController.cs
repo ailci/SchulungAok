@@ -17,7 +17,7 @@ public class QotdController : ControllerBase
         _context = context;
     }
 
-
+    
     [HttpGet]
     public IActionResult GetQuoteOfTheDay()  //localhost:1234/api/qotd
     {
