@@ -34,6 +34,7 @@ public static class ServiceExtensions
     public static IServiceCollection ConfigureDI(this IServiceCollection services)
     {
         services.AddScoped<IQuoteRepository, QuoteRepository>();
+        services.AddScoped<IAuthorRepository, AuthorRepository>();
         services.AddScoped<IRepositoryManager, RepositoryManager>();
 
         services.AddScoped<IQotdService, QotdService>();
