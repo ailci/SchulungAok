@@ -23,18 +23,7 @@ public class QotdController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetQuoteOfTheDayAsync()  //localhost:1234/api/qotd
     {
-        var randomQuote = await _repositoryManager.Quote.GetRandomQuoteAsync();
-
-        var qotd = new QuoteOfTheDayDto
-        {
-            Id = randomQuote.Id,
-            QuoteText = randomQuote.QuoteText,
-            AuthorName = randomQuote.Author?.Name ?? "",
-            AuthorDescription = randomQuote.Author?.Description ?? "",
-            AuthorBirthDate = randomQuote.Author?.BirthDate,
-            AuthorPhoto = randomQuote.Author?.Photo,
-            AuthorPhotoMimeType = randomQuote.Author?.PhotoMimeType
-        };
+        
 
         return Ok(qotd);
     }

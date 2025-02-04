@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{55E57959-68C6-40C7-944C-F1D618279B02}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{70452522-7A5B-419B-AD2C-4BCD5C7895AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{6E9FCAD0-8417-444E-81E6-054B40853559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{37D06210-FE18-4119-830B-590ECF3F73A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6E9FCAD0-8417-444E-81E6-054B40853559}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E9FCAD0-8417-444E-81E6-054B40853559}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E9FCAD0-8417-444E-81E6-054B40853559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37D06210-FE18-4119-830B-590ECF3F73A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37D06210-FE18-4119-830B-590ECF3F73A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37D06210-FE18-4119-830B-590ECF3F73A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37D06210-FE18-4119-830B-590ECF3F73A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
