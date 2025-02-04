@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Contracts;
+using Service;
 using Shared.DataTransferObjects;
 
 namespace Api.Controllers;
@@ -12,18 +13,18 @@ namespace Api.Controllers;
 [ApiController]
 public class QotdController : ControllerBase
 {
-    private readonly IRepositoryManager _repositoryManager;
+    private readonly IServiceManager _serviceManager;
 
-    public QotdController(IRepositoryManager repositoryManager)
+    public QotdController(IServiceManager serviceManager)
     {
-        _repositoryManager = repositoryManager;
+        _serviceManager = serviceManager;
     }
 
     
     [HttpGet]
     public async Task<IActionResult> GetQuoteOfTheDayAsync()  //localhost:1234/api/qotd
     {
-        
+        var qotd = await _serviceManager.QotdService.GetQuoteOfTheDayAsync();
 
         return Ok(qotd);
     }
