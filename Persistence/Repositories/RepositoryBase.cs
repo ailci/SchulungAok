@@ -8,37 +8,32 @@ using Persistence.Contracts;
 
 namespace Persistence.Repositories;
 
-public class RepositoryBase<T> : IRepositoryBase<T> where T : class
+public abstract class RepositoryBase<T>(QotdContext qotdContext) : IRepositoryBase<T> where T : class
 {
-    private readonly QotdContext _qotdContext;
-
-    public RepositoryBase(QotdContext qotdContext)
-    {
-        _qotdContext = qotdContext;
-    }
+    protected readonly QotdContext QotdContext = qotdContext;
 
     public void Create(T entity)
     {
-        _qotdContext.Set<T>().Add(entity);
+        QotdContext.Set<T>().Add(entity);
     }
 
     public void Delete(T entity)
     {
-        _qotdContext.Set<T>().Remove(entity);
+        QotdContext.Set<T>().Remove(entity);
     }
 
     public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
     {
-        return _qotdContext.Set<T>().Where(expression);
+        return QotdContext.Set<T>().Where(expression);
     }
 
     public IQueryable<T> GetAll()
     {
-        return _qotdContext.Set<T>();
+        return QotdContext.Set<T>();
     }
 
     public void Update(T entity)
     {
-        _qotdContext.Set<T>().Update(entity);
+        QotdContext.Set<T>().Update(entity);
     }
 }

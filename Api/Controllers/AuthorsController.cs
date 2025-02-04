@@ -28,6 +28,14 @@ public class AuthorsController : ControllerBase
 
         return Ok(authors);
     }
+    
+    [HttpGet("{id:guid}", Name = "GetAuthor")]  //localhost:1234/api/authors/{id}
+    public async Task<IActionResult> GetAuthor(Guid id)
+    {
+        var author = await _service.AuthorService.GetAuthorAsync(id);
+
+        return Ok(author);
+    }
 
     #endregion
 }
