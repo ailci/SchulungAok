@@ -9,4 +9,5 @@ namespace Service;
 public interface IServiceManager
 {
     IQotdService QotdService { get; }
+    IAuthorService AuthorService { get; }
 }
