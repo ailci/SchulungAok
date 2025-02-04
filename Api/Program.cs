@@ -1,4 +1,5 @@
 using Api.Configuration;
+using Api.Controllers;
 using Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .ConfigureApi()
-    .ConfigureDb(builder.Configuration);
+    .ConfigureDb(builder.Configuration)
+    .ConfigureDI();
 
 var app = builder.Build();
 

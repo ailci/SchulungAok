@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Persistence;
+using Persistence.Contracts;
+using Persistence.Repositories;
 
 namespace Api.Configuration;
 
@@ -24,6 +26,14 @@ public static class ServiceExtensions
             options.UseSqlServer(connectionString);
             options.EnableSensitiveDataLogging();
         });
+
+        return services;
+    }
+
+    public static IServiceCollection ConfigureDI(this IServiceCollection services)
+    {
+        services.AddScoped<IQuoteRepository, QuoteRepository>();
+        services.AddScoped<IRepositoryManager, RepositoryManager>();
 
         return services;
     }
