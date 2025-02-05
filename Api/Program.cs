@@ -1,6 +1,7 @@
 using Api.Configuration;
 using Api.Controllers;
 using Api.Middleware;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,12 @@ builder.Services
     .ConfigureApi()
     .ConfigureDb(builder.Configuration)
     .ConfigureDI();
+
+//Serilog
+builder.Host.UseSerilog((hostContext, configuration) =>
+{
+    configuration.ReadFrom.Configuration(hostContext.Configuration);
+});
 
 var app = builder.Build();
 
