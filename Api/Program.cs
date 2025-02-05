@@ -10,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .ConfigureApi()
     .ConfigureDb(builder.Configuration)
-    .ConfigureDI();
+    .ConfigureDI()
+    .ConfigureLogger();
 
 //Serilog
 builder.Host.UseSerilog((hostContext, configuration) =>
