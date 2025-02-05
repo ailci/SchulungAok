@@ -33,7 +33,7 @@ public class AuthorsController : ControllerBase
     public async Task<IActionResult> GetAuthor(Guid id)
     {
         var author = await _service.AuthorService.GetAuthorAsync(id);
-
+        
         return Ok(author);
     }
 
