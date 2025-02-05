@@ -17,6 +17,6 @@ public abstract class AuthorForManipulationDto
     [NoFutureDate(ErrorMessage = "Geburtsdatum ist ungültig")]
     public DateOnly? BirthDate { get; set; }
 
-    //TODO: Datei-Endungen jpg,jpeg,png,bmp,gif zulässig
+    [AllowedExtensions("jpg,jpeg,png,gif")]
     public IFormFile? Photo { get; set; }
 }

@@ -46,13 +46,8 @@ public class AuthorsController : ControllerBase
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> CreateAuthor(AuthorForCreateDto authorForCreateDto)
     {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
-
-
+        //if (!ModelState.IsValid) return BadRequest(ModelState);
         var authorDto = await _service.AuthorService.CreateAuthorAsync(authorForCreateDto);
-
-        //TODO: Validierung & Rückgabe
-
 
         return CreatedAtRoute(nameof(GetAuthor), new { id = authorDto.Id }, authorDto);
     }
