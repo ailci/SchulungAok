@@ -20,6 +20,10 @@ public static class ServiceExtensions
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.AddTransient<FormFileToByteArrayResolver>();
 
+        //GlobalExceptionHandler
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddProblemDetails();
+
         return services;
     }
     

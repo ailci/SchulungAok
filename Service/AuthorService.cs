@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Exceptions;
 using Microsoft.Extensions.Logging;
 using Persistence.Contracts;
 using Shared.DataTransferObjects;
@@ -73,8 +74,7 @@ public class AuthorService : IAuthorService
     {
         var author = await _repositoryManager.Author.GetAuthorAsync(authorId);
 
-        //TODO: Fehlerbehandlung
-        //if (author is null) throw new AuthorNotFoundException(authorId);
+        if (author is null) throw new AuthorNotFoundException(authorId);
 
         return author;
     }
