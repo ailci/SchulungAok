@@ -21,4 +21,9 @@ public class AuthorRepository(QotdContext qotdContext) : RepositoryBase<Author>(
         //var auth = QotdContext.Authors.FindAsync(authorId); //Suchen via Primärschlüssel
         return await FindByCondition(author => author.Id.Equals(authorId)).SingleOrDefaultAsync();
     }
+
+    public void CreateAuthor(Author author)
+    {
+        Create(author);
+    }
 }

@@ -8,5 +8,5 @@ namespace Shared.DataTransferObjects;
 
 public class AuthorForCreateDto : AuthorForManipulationDto
 {
-
+    public IEnumerable<QuoteForCreateDto>? Quotes { get; set; }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 using Persistence.Contracts;
 using Shared.DataTransferObjects;
 
@@ -11,13 +12,15 @@ namespace Service;
 
 public class AuthorService : IAuthorService
 {
+    private readonly ILogger<AuthorService> _logger;
     private readonly IRepositoryManager _repositoryManager;
     private readonly IMapper _mapper;
 
-    public AuthorService(IRepositoryManager repositoryManager, IMapper mapper)
+    public AuthorService(IRepositoryManager repositoryManager, IMapper mapper, ILogger<AuthorService> logger)
     {
         _repositoryManager = repositoryManager;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<IEnumerable<AuthorDto>> GetAuthorsAsync()
@@ -44,5 +47,14 @@ public class AuthorService : IAuthorService
         if (author is null) throw new Exception();
 
         return _mapper.Map<AuthorDto>(author);
+    }
+
+    public async Task<AuthorDto> CreateAuthorAsync(AuthorForCreateDto authorForCreateDto)
+    {
+        _logger.LogInformation($"CreateAuthorAsync mit {authorForCreateDto} aufgerufen...");
+
+        //TODO: Speichern mit Repo
+
+        return await Task.FromResult(new AuthorDto());
     }
 }

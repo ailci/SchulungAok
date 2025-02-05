@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service;
+using Shared.DataTransferObjects;
 
 namespace Api.Controllers;
 
@@ -35,6 +36,20 @@ public class AuthorsController : ControllerBase
         var author = await _service.AuthorService.GetAuthorAsync(id);
         
         return Ok(author);
+    }
+
+    #endregion
+
+    #region POST
+
+    [HttpPost(Name = "CreateAuthor")]
+    public async Task<IActionResult> CreateAuthor(AuthorForCreateDto authorForCreateDto)
+    {
+        var authorDto = await _service.AuthorService.CreateAuthorAsync(authorForCreateDto);
+
+        //TODO: Validierung & Rückgabe
+
+        return Ok(authorDto);
     }
 
     #endregion
