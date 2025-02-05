@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Domain.Entities;
 using Microsoft.Extensions.Logging;
 using Persistence.Contracts;
 using Shared.DataTransferObjects;
+using Shared.Utilities;
 
 namespace Service;
 
@@ -51,10 +53,12 @@ public class AuthorService : IAuthorService
 
     public async Task<AuthorDto> CreateAuthorAsync(AuthorForCreateDto authorForCreateDto)
     {
-        _logger.LogInformation($"CreateAuthorAsync mit {authorForCreateDto} aufgerufen...");
+        _logger.LogInformation($"CreateAuthorAsync mit {authorForCreateDto.LogAsJson()} aufgerufen...");
 
-        //TODO: Speichern mit Repo
+        var authorEntity = _mapper.Map<Author>(authorForCreateDto);
+        _repositoryManager.Author.CreateAuthor(authorEntity);
+        await _repositoryManager.SaveAsync();
 
-        return await Task.FromResult(new AuthorDto());
+        return _mapper.Map<AuthorDto>(authorEntity);
     }
 }

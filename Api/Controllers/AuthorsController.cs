@@ -43,7 +43,7 @@ public class AuthorsController : ControllerBase
     #region POST
 
     [HttpPost(Name = "CreateAuthor")]
-    public async Task<IActionResult> CreateAuthor(AuthorForCreateDto authorForCreateDto)
+    public async Task<IActionResult> CreateAuthor([FromBody] AuthorForCreateDto authorForCreateDto)
     {
         var authorDto = await _service.AuthorService.CreateAuthorAsync(authorForCreateDto);
 

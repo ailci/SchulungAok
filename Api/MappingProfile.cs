@@ -10,5 +10,6 @@ public class MappingProfile : Profile
     {
         CreateMap<Quote, QuoteOfTheDayDto>();
         CreateMap<Author, AuthorDto>();
+        CreateMap<AuthorForCreateDto, Author>();
     }
 }
