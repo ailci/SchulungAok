@@ -64,6 +64,18 @@ public class AuthorService : IAuthorService
 
     public async Task DeleteAuthorAsync(Guid authorId)
     {
-        
+        var authorEntity = await GetAuthorAndCheckIfItExists(authorId);
+        _repositoryManager.Author.DeleteAuthor(authorEntity);
+        await _repositoryManager.SaveAsync();
+    }
+
+    private async Task<Author> GetAuthorAndCheckIfItExists(Guid authorId)
+    {
+        var author = await _repositoryManager.Author.GetAuthorAsync(authorId);
+
+        //TODO: Fehlerbehandlung
+        //if (author is null) throw new AuthorNotFoundException(authorId);
+
+        return author;
     }
 }
