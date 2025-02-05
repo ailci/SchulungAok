@@ -61,4 +61,9 @@ public class AuthorService : IAuthorService
 
         return _mapper.Map<AuthorDto>(authorEntity);
     }
+
+    public async Task DeleteAuthorAsync(Guid authorId)
+    {
+        
+    }
 }

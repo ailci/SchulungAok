@@ -26,4 +26,9 @@ public class AuthorRepository(QotdContext qotdContext) : RepositoryBase<Author>(
     {
         Create(author);
     }
+
+    public void DeleteAuthor(Author author)
+    {
+        
+    }
 }
