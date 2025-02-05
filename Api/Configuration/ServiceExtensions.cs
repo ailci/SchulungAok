@@ -3,6 +3,7 @@ using Persistence;
 using Persistence.Contracts;
 using Persistence.Repositories;
 using Service;
+using Service.Resolver;
 
 namespace Api.Configuration;
 
@@ -17,6 +18,7 @@ public static class ServiceExtensions
 
         //Automapper
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        services.AddTransient<FormFileToByteArrayResolver>();
 
         return services;
     }
