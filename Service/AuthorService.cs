@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Exceptions;
+using Logging;
 using Microsoft.Extensions.Logging;
 using Persistence.Contracts;
 using Shared.DataTransferObjects;
@@ -15,11 +16,11 @@ namespace Service;
 
 public class AuthorService : IAuthorService
 {
-    private readonly ILogger<AuthorService> _logger;
+    private readonly ILoggerManager _logger;
     private readonly IRepositoryManager _repositoryManager;
     private readonly IMapper _mapper;
 
-    public AuthorService(IRepositoryManager repositoryManager, IMapper mapper, ILogger<AuthorService> logger)
+    public AuthorService(IRepositoryManager repositoryManager, IMapper mapper, ILoggerManager logger)
     {
         _repositoryManager = repositoryManager;
         _mapper = mapper;

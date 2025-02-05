@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Logging;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Contracts;
 using Persistence.Repositories;
@@ -50,6 +51,12 @@ public static class ServiceExtensions
         services.AddScoped<IAuthorService, AuthorService>();
         services.AddScoped<IServiceManager, ServiceManager>();
 
+        return services;
+    }
+
+    public static IServiceCollection ConfigureLogger(this IServiceCollection services)
+    {
+        services.AddSingleton<ILoggerManager, LoggerManager>();
         return services;
     }
 }
