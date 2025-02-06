@@ -21,8 +21,16 @@ public class QotdController : ControllerBase
     }
 
     
-    [HttpGet]
-    public async Task<IActionResult> GetQuoteOfTheDayAsync()  //localhost:1234/api/qotd
+    [HttpGet] //localhost:1234/api/qotd
+    public async Task<IActionResult> GetQuoteOfTheDayAsync()  
+    {
+        var qotd = await _serviceManager.QotdService.GetQuoteOfTheDayAsync();
+
+        return Ok(qotd);
+    } 
+    
+    [HttpGet("qotdsecured")] //localhost:1234/api/qotd/qotdsecured
+    public async Task<IActionResult> GetQuoteOfTheDaySecuredAsync()  
     {
         var qotd = await _serviceManager.QotdService.GetQuoteOfTheDayAsync();
 
