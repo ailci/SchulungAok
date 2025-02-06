@@ -1,4 +1,5 @@
-﻿
+﻿import { QotdComponent } from "./qotd-component.js";
+
 
 const qotdUI = {
     quoteTextEl: document.querySelector("#quote"),
@@ -7,3 +8,6 @@ const qotdUI = {
     authorDescriptionEl: document.querySelector("#author-description"),
     authorBirthdateEl: document.querySelector("#author-birthdate")
 };
+
+const qotd = new QotdComponent(qotdUI);
+qotd.init();
