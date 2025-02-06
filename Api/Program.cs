@@ -11,7 +11,8 @@ builder.Services
     .ConfigureApi()
     .ConfigureDb(builder.Configuration)
     .ConfigureDI()
-    .ConfigureLogger();
+    .ConfigureLogger()
+    .ConfigureCors();
 
 //Serilog
 builder.Host.UseSerilog((hostContext, configuration) =>
@@ -51,6 +52,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 //app.UseApiKeyAuthMiddleware(); // via Middleware
+app.UseCors("CorsPolicy");
 
 app.UseAuthorization();
 
