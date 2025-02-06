@@ -9,13 +9,21 @@
         <div class="p-2 bg-light rounded-3">
             <h5 class="display-6 py-3">Spruch Des Tages</h5>
             <p class="text-center">
-                <!-- BILD -->
+                <!-- src="data:MIMETYPE;base64,NUTZDATEN" -->
+                @if (!string.IsNullOrEmpty(Model.QotdDto?.AuthorPhotoMimeType) && Model.QotdDto?.AuthorPhoto is not null)
+                {
+                    <img width="150" src="data:@Model.QotdDto.AuthorPhotoMimeType;base64,@Convert.ToBase64String(Model.QotdDto.AuthorPhoto)"/>
+                }
+                else
+                {
+                    <img width="150" src="https://placehold.co/150" />
+                }
             </p>
             <blockquote class="text-center">
                 <p class="lead fw-bold">@Model.QotdDto?.QuoteText</p>
                 <cite>
                     <span>@Model.QotdDto?.AuthorName - @Model.QotdDto?.AuthorDescription</span>
-                    <br />
+                    <br aria-hidden="true"/>
                     <span>
                         @(Model.QotdDto?.AuthorBirthDate is not null ? Model.QotdDto.AuthorBirthDate.Value.ToShortDateString() : "k.A.")
                     </span>
