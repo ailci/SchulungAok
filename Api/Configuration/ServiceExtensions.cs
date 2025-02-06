@@ -1,4 +1,5 @@
-﻿using Logging;
+﻿using Api.Filter;
+using Logging;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Contracts;
@@ -12,7 +13,10 @@ public static class ServiceExtensions
 {
     public static IServiceCollection ConfigureApi(this IServiceCollection services)
     {
-        services.AddControllers();  //WebApi
+        services.AddControllers(config =>
+        {
+            //config.Filters.Add<ApiKeyAuthFilter>(); // Globaler Filter
+        });  //WebApi
         
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         services.AddOpenApi();
@@ -24,6 +28,9 @@ public static class ServiceExtensions
         //GlobalExceptionHandler
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddProblemDetails();
+
+        //Filter
+        services.AddScoped<ApiKeyAuthFilter>();
 
         return services;
     }
