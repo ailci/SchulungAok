@@ -20,10 +20,15 @@ public class IndexModel : PageModel
     public async Task OnGet()
     {
         // 1. Version
+        //var client = _httpClientFactory.CreateClient("qotdapiservice");
+        //var response = await client.GetAsync("qotd"); // BaseUri + Individuelle => localhost:1234/api/qotd
+        //response.EnsureSuccessStatusCode();
+        //var content = await response.Content.ReadAsStringAsync();
+        //QotdDto = JsonSerializer.Deserialize<QuoteOfTheDayDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true});
+
+        // 2. Version Abkürzung
         var client = _httpClientFactory.CreateClient("qotdapiservice");
-        var response = await client.GetAsync("qotd"); // BaseUri + Individuelle => localhost:1234/api/qotd
-        response.EnsureSuccessStatusCode();
-        var content = await response.Content.ReadAsStringAsync();
-        QotdDto = JsonSerializer.Deserialize<QuoteOfTheDayDto>(content);
+        QotdDto = await client.GetFromJsonAsync<QuoteOfTheDayDto>("qotd");
+
     }
 }
