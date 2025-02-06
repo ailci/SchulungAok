@@ -13,5 +13,6 @@ export class QotdComponent {
 
     async init() {
         let data = await this.#qotdService.getQotd();
+        console.log(`Rückgabe von Service ${data}`);
     }
 }
