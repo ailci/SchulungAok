@@ -1,9 +1,12 @@
+using Client.Frontend;
 using Client.Frontend.Services;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.Configure<QotdAppSettings>(builder.Configuration.GetSection("QotdAppSettings"));
 builder.Services.AddScoped<IQotdApiService, QotdApiService>();
 
 //Named Http-Client
@@ -14,9 +17,10 @@ builder.Services.AddScoped<IQotdApiService, QotdApiService>();
 //});
 
 //Typed Http-Client
-builder.Services.AddHttpClient<IQotdApiService,QotdApiService>(client =>
+builder.Services.AddHttpClient<IQotdApiService,QotdApiService>((sp,client) =>
 {
-    client.BaseAddress = new Uri("https://localhost:7087/api/");
+    var appSettings = sp.GetRequiredService<IOptions<QotdAppSettings>>().Value;
+    client.BaseAddress = new Uri(appSettings.QotdServiceUri);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
