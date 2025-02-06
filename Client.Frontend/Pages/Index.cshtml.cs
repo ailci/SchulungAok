@@ -1,9 +1,9 @@
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Shared.DataTransferObjects;
+using System.Text.Json;
 
-namespace Client.UI.Pages;
+namespace Client.Frontend.Pages;
 
 public class IndexModel : PageModel
 {

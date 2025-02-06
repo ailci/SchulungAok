@@ -10,6 +10,7 @@ builder.Services.AddHttpClient("qotdapiservice", client =>
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
