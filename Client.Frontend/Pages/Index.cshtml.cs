@@ -36,7 +36,10 @@ public class IndexModel : PageModel
             //QotdDto = await client.GetFromJsonAsync<QuoteOfTheDayDto>("qotd");
 
             // 3. Version via Service
-            QotdDto = await _apiService.GetQuoteOfTheDayAsync();
+            //QotdDto = await _apiService.GetQuoteOfTheDayAsync();
+            
+            // 4. Version via Service und ApiKey
+            QotdDto = await _apiService.GetQuoteOfTheDaySecuredAsync();
         }
         catch (HttpRequestException e)
         {

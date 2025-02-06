@@ -1,4 +1,5 @@
 using Client.Frontend;
+using Client.Frontend.Handler;
 using Client.Frontend.Services;
 using Microsoft.Extensions.Options;
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.Configure<QotdAppSettings>(builder.Configuration.GetSection("QotdAppSettings"));
 builder.Services.AddScoped<IQotdApiService, QotdApiService>();
+builder.Services.AddTransient<ApiKeyDelegatingHandler>();
 
 //Named Http-Client
 //builder.Services.AddHttpClient("qotdapiservice", client =>
@@ -22,7 +24,8 @@ builder.Services.AddHttpClient<IQotdApiService,QotdApiService>((sp,client) =>
     var appSettings = sp.GetRequiredService<IOptions<QotdAppSettings>>().Value;
     client.BaseAddress = new Uri(appSettings.QotdServiceUri);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
-});
+    //client.DefaultRequestHeaders.Add("x-api-key", appSettings.XApiKey);
+}).AddHttpMessageHandler<ApiKeyDelegatingHandler>();
 
 
 var app = builder.Build();
